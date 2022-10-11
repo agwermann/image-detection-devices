@@ -85,7 +85,7 @@ class MQTTClient:
             now = datetime.datetime.now()
             sent_datetime = datetime.datetime.strptime(msg_dict['timestamp'], "%Y-%m-%dT%H:%M:%S.%f")
             latency = str(now - sent_datetime)
-            self.logger.info(f"Received message from `{msg_dict['client_id']}` with latency `{latency}` at `{now}`")
+            self.logger.info(f"Received message from `{msg_dict['client_id']}` with latency `{latency}` at `{now}` | Processing time: `{msg_dict['processing_time']}`")
         self.mqttclient.subscribe(self.topic)
         self.mqttclient.on_message = on_message
         self.mqttclient.loop_forever()
